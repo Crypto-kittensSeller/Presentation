@@ -1,0 +1,279 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Node.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center">
+					<div style="position: relative; top: 80px; right: 120px;">
+						<div style="font-size: 65px; font-weight: 500; z-index: 50; color: rgb(28, 29, 28)">
+							<span>Introduction to</span>
+						</div>
+					</div>
+					<img style="border: 0px; box-shadow: 0 0 0 0; height: 400px; width: 600px" alt="Node.js"
+					src="https://s3.amazonaws.com/media-p.slid.es/uploads/162473/images/4908988/nodejs-new-pantone-black.png">
+					</div>
+				</section>
+				<section>
+					<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+						<span style="margin-bottom: 40px; font-size: 45px; font-weight: 500; color:rgb(5, 195, 170)">What is Node.js?</span>
+						<div style="text-align: left; width: 800px; height: 400px; font-size: 35px; font-weight: 500">
+							<ul>
+								<li>Open source &amp; cross-platform project.</li>
+								<li>Build on Chrome's JavaScript runtime environment.</li>
+								<li>Event driven &amp; Non-blocking IO.</li>
+								<li>Real time apps.</li>
+								<li>Single threaded.</li>
+								<li>Build in Async IO, HTTP/s, file-system etc.</li>
+								<li>Ability to do JavaScript on server.</li>
+								<li>Act as a web server.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: space-between">
+						<div>
+							<img style="border: 0px;  height: 580px; width: 1000px" src="./img/blocking_model.png" alt="blocking_model">
+						</div>
+						<span style="padding-bottom: 30px; font-size: 40px; font-weight: 500; color: brown">Problem: I/O Latency</span>
+					</div>
+				</section>
+				<section>
+						<section>
+								<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+									<span style=" font-size: 45px; font-weight: 500; color:rgb(5, 195, 170)">Architecture of Node.js</span>
+									<img style="border: 0px; height: 321px; width: 921px" src="./img/architecture.png" alt="architecture">
+								</div>
+						</section>
+						<section>
+								<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: space-between">
+									<div>
+										<img style="border: 0px;  height: 580px; width: 1000px" src="./img/non-blocking_model.png" alt="blocking_model">
+									</div>
+									<span style="padding-bottom: 30px; font-size: 40px; font-weight: 500; color:rgb(5, 195, 170)">Answer: Event Loop</span>
+								</div>
+						</section>
+						<section>
+								<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center">
+									<span style=" font-size: 45px; font-weight: 500; color:rgb(5, 195, 170)">Event Loop mechanism</span>
+									<img style="border: 0px; height: 468px; width: 1024px" src="./img/event_loop.png" alt="event_loop">
+								</div>
+						</section>
+						<section>
+							<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+								<span style=" font-size: 45px; font-weight: 500; color:rgb(5, 195, 170)">Stages of Event Loop</span>
+								<img style="border: 0px; height: 468px; width: 1024px" src="./img/loop_stages.png" alt="loop_stages">
+							</div>
+						</section>
+						<section>
+							<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+								<span style=" font-size: 45px; font-weight: 500; margin-bottom: 40px; color:rgb(5, 195, 170)">Timers in Node.js</span>
+								<div style="text-align: left; width: 800px; height: 400px; font-size: 35px; font-weight: 500;">
+									<ul>
+										<li>setTimeout()</li>
+										<div style="font-size: 20px;">
+											<code class="hljs">
+												<span class="hljs-function">
+												<span class="hljs-keyword">function</span>
+												<span class="hljs-title">myTimeout</span>(<span class="hljs-params">arg</span>) </span>{ <br>
+												<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`arg was =&gt; <span class="hljs-subst">${arg}</span>`</span>);<br>
+										  		} <br><br>
+										  		setTimeout(myTimeout, <span class="hljs-number">1500</span>, <span class="hljs-string">'Hello'</span>);
+											</code>
+										</div><br>
+										<li>setInterval()</li>
+										<div style="font-size: 20px;">
+											<code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">intervalFunc</span>(<span class="hljs-params"></span>) </span>{ <br>
+											<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Cant stop me now!'</span>); <br>
+										  	} <br><br>
+										   	setInterval(intervalFunc, <span class="hljs-number">1500</span>);</code>
+										</div>
+									</ul>
+								</div>
+								
+							</div>
+						</section>
+						<section>
+								<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+									<span style=" font-size: 45px; font-weight: 500; margin-bottom: 20px; color:rgb(5, 195, 170)">setImmediate vs nextTick</span>
+									<div style="text-align: left; width: 800px; height: 400px; font-size: 35px; font-weight: 500;">
+										<ul>
+											<li>setImmediate()</li>
+											<div style="font-size: 20px">
+													<span style="font-size: 35px; position: relative; left: 100px;">input:</span>
+												<code class="hljs">
+													<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'before immediate'</span>);<br><br>
+													setImmediate(<span class="hljs-function">(<span class="hljs-params">arg</span>) =&gt;</span> { <br>
+													  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`executing immediate: <span class="hljs-subst">${arg}</span>`</span>);<br>
+													}, <span class="hljs-string">'so immediate'</span>);<br><br>
+													<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'after immediate'</span>);
+												</code>
+											<span style="font-size: 35px; position: relative; left: 100px;">output:</span>
+											</div>
+											<div style="font-size: 20px; margin-bottom: 10px">
+												<code class="hljs">
+													<span> before immediate <br>
+													after immediate <br>
+													executing immediate: so immediate</span>
+												</code>
+											</div>
+											<li>process.nextTick()</li>
+												<ul style="list-style-type: circle">
+												<li style="font-size: 30px;">Will run before any Immediates that are set</li>
+												<li style="font-size: 30px;">Is non-clearable (the execution cannot be stopped)</li>
+												</ul>
+										</ul>
+									</div>
+								</div>
+							</section>
+				</section>
+				<section>
+					<section>
+						<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+								<h2 style="color:rgb(5, 195, 170)">NPM</h2>
+							<div style="text-align: center; width: 800px; height: 400px; font-size: 30px; font-weight: 500;">
+								<span>The default package manager for Node.js.</span><br><br>
+								<h3 style="color:rgb(5, 195, 170)">Benefits</h3>
+								<span>One development language JS on client and server side</span><br>
+								<span>Open source technology</span><br>
+								<span>It saves space</span><br>
+								<span>Global or local installation </span><br>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+							<span style="font-size: 30px;">launch npm: </span> 	<code class="hljs" style="font-size:20px">$ npm init -y</code>
+						</div>
+						<div>
+							<img style="border: 0px;  height: 300x; width: 400px" src="./img/package_json.png" alt="default_package_json">
+						</div>
+						<div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+							<span style="font-size: 30px;">install dependencies: </span> 	<code class="hljs" style="font-size:20px">$ npm install < module ></code>
+						</div>
+					</section>
+						
+					<section>
+						<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center;">
+							<h4 style="color:rgb(201, 12, 12)">Useful <img style="border: 0px; box-shadow: 0 0 0 0; position: relative; top: 25px; margin: 5px; height: 70x; width: 150px" src="./img/npm.png" alt="npm">modules</h4>
+						<div style="text-align: center; width: 600px; height: 400px; font-size: 30px; font-weight: 500;">
+							<div style="text-align: left; width: 600px; height: 400px; font-size: 30px; font-weight: 500;">
+								<ul>
+									<li>live-server</li>
+									<li>eslint</li>
+									<li>webpack</li>
+									<li>express</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					</section>
+				</section>
+				<section>
+					<section>
+					<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: center">
+						<h3 style="color:rgb(5, 195, 170); margin-bottom: 30px">Node as JS server</h3>
+						<div style="margin-bottom: 20px; font-size: 20px; text-align: left">
+							<span style="font-size: 30px">Create simple HTTP server</span>
+							<code class="hljs">
+								<span class="hljs-keyword">const&#8194</span>http = <span class="hljs-attribute">require</span>(<span class="hljs-string">'http'</span>);<br><br>
+								http.<span class="hljs-attribute">createServer</span>(<span class="hljs-function">(<span class="hljs-params">request, response</span>) =></span> { <br>
+									response.<span class="hljs-attribute">write</span>(<span class="hljs-built_in">'Hello World!'</span>);<br>
+									response.<span class="hljs-attribute">end</span>(); <br>
+								}).<span class="hljs-attribute">listen</span>(<span class="hljs-number">3000</span>);
+							</code>
+						</div>
+						<div style="font-size: 20px; text-align: left">
+								<span style="font-size: 30px">Create server using Express</span>
+								<code class="hljs">
+									<span class="hljs-keyword">const&#8194</span>express = <span class="hljs-attribute">require</span>(<span class="hljs-string">'express'</span>);<br>
+									<span class="hljs-keyword">const&#8194</span>app = <span class="hljs-attribute">express</span>();<br><br>
+									app.<span class="hljs-attribute">get</span>('/',<span class="hljs-function">function (<span class="hljs-params">request, response</span>)</span> { <br>
+										response.<span class="hljs-attribute">send</span>(<span class="hljs-built_in">'Hello World!'</span>);<br>
+									}).<span class="hljs-attribute">listen</span>(<span class="hljs-number">3000</span>);
+								</code>
+							</div>
+					</div>
+					</section>
+					<section>
+							<div class="slide__wrapper" style="display: flex; flex-direction: column; align-items: right">
+								<h3 style="color:rgb(5, 195, 170); margin-bottom: 30px">Working with file system</h3>
+								<div style="margin-bottom: 20px; margin-left: 200px; width: 500px; font-size: 20px; text-align: left">
+									<span style="font-size: 30px">Synchronous file reading</span>
+									<code class="hljs">
+											<span class="hljs-keyword">const&#8194</span>fs = <span class="hljs-attribute">require</span>(<span class="hljs-string">'fs'</span>);<br><br>
+											<span class="hljs-keyword">const&#8194</span>data = fs.<span class="hljs-attribute">readFileSync</span>(__filename);<br>
+											console.log(data);
+									</code>
+								</div>
+								<div style="font-size: 20px;  width: 500px; text-align: left; margin-left: 200px" >
+										<span style="font-size: 30px">Asynchronous file reading</span>
+										<code class="hljs">
+												<span class="hljs-keyword">const&#8194</span>fs = <span class="hljs-attribute">require</span>(<span class="hljs-string">'fs'</span>);<br><br>
+												fs.<span class="hljs-attribute">readFile</span>(__filename,<span class="hljs-function"> function (<span class="hljs-params">err, data</span>)</span> { <br>
+													&#8195 if (err) { <br>
+														&#8195 &#8195console.error(err);<br>
+														&#8195 } else {<br>
+														&#8195 &#8195console.log(data);<br>
+														&#8195 } <br>
+												});
+										</code>
+									</div>
+							</div>
+						</section>
+				</section>
+				<section>
+						<div class="slide__wrapper" style="display: flex; flex-direction: column;">
+							<span style="font-size: 50px; color:rgb(5, 195, 170)">Thank you for attention!</span>
+							<div style="position: relative; top: 300px; left: 150px; display: flex; flex-direction: row;">		
+							<img src="./img/icons/rss.png" alt="rss" width="80px" height="80px" style="border: 0px; box-shadow: 0 0 0 0; margin-right: 30px">
+							<img src="./img/icons/node.png" alt="node" width="200px" height="80px" style="border: 0px; box-shadow: 0 0 0 0; margin-right: 30px">
+							<img src="./img/icons/libuv.png" alt="libuv" width="80px" height="80px" style="border: 0px; box-shadow: 0 0 0 0; margin-right: 70px">
+							<img src="./img/icons/npm.png" alt="npm" width="110px" height="80px" style="border: 0px; box-shadow: 0 0 0 0; margin-right: 60px">
+							<img src="./img/icons/v8.png" alt="npm" width="90px" height="100px" style="position: relative; bottom: 15px; border: 0px; box-shadow: 0 0 0 0; margin-right: 30px">
+						</div>
+					</section>
+			</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
